@@ -1,0 +1,19 @@
+@keyframes slideInLeft {
+    from{
+        transform: translateY(400px);
+    }
+
+    to{
+        transform: translateY(0);
+    }
+}
+
+.contenue{
+    animation: slideInLeft  1s ease-in 0s 1 normal none;
+}
+
+.select{
+    appearance: none;
+    border: none;
+    outline: none;
+}
