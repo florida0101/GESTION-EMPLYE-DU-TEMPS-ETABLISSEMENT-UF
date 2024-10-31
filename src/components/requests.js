@@ -3,7 +3,7 @@ import {formatDate} from './toolbox';
 // Fonction à obtenir parcours filtré
 export const fetchFilteredCourses = async () => {
     try {
-        const response = await fetch('http://192.168.58.106:8080/api/v1/course/filtered?establishment=ENI');
+        const response = await fetch('http://localhost:8080/api/v1/course/filtered?establishment=ENI');
         const data = await response.json();
 
         if (response.ok) {
@@ -17,7 +17,7 @@ export const fetchFilteredCourses = async () => {
 // Fonction à récupérer les programmes filtrés
 export const fetchFilteredPrograms = async (courseId, startDate, endDate) => {
     try {
-        const response = await fetch('http://192.168.58.106:8080/api/v1/program/filtered?course-id=' + courseId + '&start-date=' + startDate + '&end-date=' + endDate);
+        const response = await fetch('http://localhost:8080/api/v1/program/filtered?course-id=' + courseId + '&start-date=' + startDate + '&end-date=' + endDate);
         const data = await response.json();
 
         if (response.ok) {
@@ -36,7 +36,7 @@ export const fetchFreshTimetable = async (courseId, mondayDate) => {
     // Add 6 days to get to next Saturday
     nextSaturday.setDate(nextSaturday.getDate() + 6);
 
-    const data = fetchFilteredPrograms(courseId, formatDate(mondayDate), formatDate(nextSaturday));
+    const data = await fetchFilteredPrograms(courseId, formatDate(mondayDate), formatDate(nextSaturday));
 
     return data;
 };
@@ -44,7 +44,7 @@ export const fetchFreshTimetable = async (courseId, mondayDate) => {
 // Fonction à enregistrer les nouveaux programmes
 export const createNewPrograms = async (programs) => {
     try {
-        const response = await fetch('http://192.168.58.106:8080/api/v1/program/many/', {
+        const response = await fetch('http://localhost:8080/api/v1/program/many/', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export const createNewPrograms = async (programs) => {
 // Fonction à obtenir les jours dans la semaine
 export const fetchWeekDays = async () => {
     try {
-        const response = await fetch('http://192.168.58.106:8080/api/v1/week/');
+        const response = await fetch('http://localhost:8080/api/v1/week/');
         const data = await response.json();
 
         if (response.ok) {
@@ -78,7 +78,7 @@ export const fetchWeekDays = async () => {
 // Fonction à modifier le programme existant
 export const updateExistingProgram = async (id, program) => {
     try {
-        const response = await fetch('http://192.168.58.106:8080/api/v1/program/update?id='+id, {
+        const response = await fetch('http://localhost:8080/api/v1/program/update?id='+id, {
             method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json'

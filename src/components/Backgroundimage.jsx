@@ -10,8 +10,8 @@ function BackgroundImage() {
     return (
         <div className=" bg-my-image bg-cover bg-no-repeat bg-center bg-fixed h-screen">
             <Header />
-            <Contenue/>
-            <Footer/>
+            <Contenue />
+            <Footer />
         </div>
     )
 }
