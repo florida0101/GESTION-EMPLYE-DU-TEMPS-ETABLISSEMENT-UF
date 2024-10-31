@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <BackgroundImage />,
   },
   {
-    path: "body",
+    path: "admin",
     element: <Body />,
   },
 ]);

@@ -9,7 +9,7 @@ import Adding from "./Adding";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import './style.css';
-import { FaPlusCircle} from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 import { fetchFilteredCourses, fetchFilteredPrograms } from './requests'
 
 
@@ -36,7 +36,7 @@ function Body() {
   const [dateFilter, setDateFilter] = useState({ startDate: '', endDate: '' });
   const [programData, setProgramData] = useState([]);
   const [openAdding, setOpenAdding] = useState(false);
-  const [openUpdating, setOpenUdating] =useState(false);
+  const [openUpdating, setOpenUdating] = useState(false);
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -65,20 +65,21 @@ function Body() {
         <div className="flex flex-wrap  justify-between mx-auto p-4 text-white font-bold">
           <div className="flex gap-2">
             <img src="images/logo-eni.png" alt="" className="w-9 h-9" />
-            <p className="my-2">ENI TIME EMPLOYEE MANAGEMENT</p>
+            <p className="my-2">GESTION D'EMPLOI DU TEMPS UF(ENI)</p>
           </div>
           <div>
             <Dialog open={open} onClose={handleClose}>
-              <DialogTrigger className="my-2" onClick={handleClickOpen}>Disconnect</DialogTrigger>
+              <DialogTrigger className="my-2" onClick={handleClickOpen}>Se déconnecter</DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Disconnect</DialogTitle>
+                  <DialogTitle>Déconnexion</DialogTitle>
                   <DialogDescription>
-                    Are you sure you want to disconnect?
+                    Voulez-vous vraiment se déconnecter?
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                  <Button type="button" onClick={handleDisconnect}>Ok</Button>
+                  <Button className='bg-red-500 text-white hover:bg-red-700' type="button" onClick={handleDisconnect}>Ok</Button>
+                  <Button type="button" onClick={handleClose}>Annuler</Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -119,23 +120,19 @@ function Body() {
             </div>
           </div>
           <div className="flex gap-3">
-            <FaPlusCircle onClick={() => setOpenAdding(true)} className="fill-blue-900 " style={{ fontSize: '45px' }} />
-            {/* Find program for each weekday and display it 
-            <FaEdit onClick={() => setOpenUdating(true)}  className="fill-red-700" style={{ fontSize: '45px' }} /> 
-            */}           
+            <FaPlusCircle onClick={() => (dataParcours != '') ? setOpenAdding(true) : null} className="fill-blue-900" size={48} />
           </div>
         </div>
         <div className="w-2/3 mt-4 border rounded-lg shadow-2xl mx-auto bg-white">
-          <Tableau data={programData} />
+          {(programData.length > 0) ?
+            <Tableau data={programData} />
+            : <div className="text-center w-full text-yellow-500 bg-yellow-100/20 p-4">Veuillez entrer nouveau programme en choisissant un parcours ou patienter un peu!</div>
+          }
         </div>
       </div>
       < Footer />
       
-      
       <Adding open={openAdding} onClose={() => setOpenAdding(false)} parcours={dataParcours} />
-      {/* Find program for each weekday and display it 
-      <Update open={openUpdating}  onClose={() => setOpenUdating(false)} parcours={dataParcours} />
-      */}
     </div>
   );
 }

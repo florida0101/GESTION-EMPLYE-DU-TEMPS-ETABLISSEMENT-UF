@@ -14,15 +14,16 @@ import {
 
 
 function Tableau({ data }) {
-    // ... (optional data transformation)
-
     const weekdays = new Set((data.length > 0) ? data.map((item) => item.weekday) : []); // Get unique weekdays
+
+    console.log(data)
 
     //état pour le diaogue de update
     const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
+    const [parcoursId, setParcoursId]= useState('');
 
     //Pour stocker le programme sélectionné
-    const [programmeSelectionne, setProgrammeSelectionne] = useState(null);
+    const [programmeSelectionne, setProgrammeSelectionne] = useState({});
 
     const handleOpenUpdateDialog = (programme) => {
         setOpenUpdateDialog(true);
@@ -64,18 +65,15 @@ function Tableau({ data }) {
                                 ))}
 
                                 {/* Rendu conditionnel des icônes d'édition uniquement sur la route '/body' */}
-                                {location.pathname === "/body" && (
+                                {location.pathname === "/admin" && (
                                     <div className="flex mt-4">
-                                        {data.map((item) => (
-                                            <div key={item.programId} className="flex items-center mr-4">
-                                                <span>{item.moduleName}</span>
-                                                <FaEdit
-                                                    onClick={() => handleOpenUpdateDialog(item)}
-                                                    className="fill-red-700 cursor-pointer hover:scale-110 transition duration-300 ease-in-out"
-                                                    style={{ fontSize: "20px" }}
-                                                />
-                                            </div>
-                                        ))}
+                                        <div key={item.programId} className="flex items-center">
+                                            <FaEdit
+                                                onClick={() => handleOpenUpdateDialog(item)}
+                                                className="fill-red-700 cursor-pointer hover:scale-110 transition duration-300 ease-in-out"
+                                                style={{ fontSize: "20px" }}
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </TableRow>
@@ -83,7 +81,8 @@ function Tableau({ data }) {
                         : null}
                 </TableBody>
             </Table>
-            <Update open={openUpdateDialog} onClose={handleCloseUpdateDialog} program={item} />
+
+            <Update open={openUpdateDialog} onClose={handleCloseUpdateDialog} program={programmeSelectionne} />
         </div>
     );
 }

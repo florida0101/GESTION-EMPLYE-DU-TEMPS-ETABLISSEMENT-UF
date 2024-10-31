@@ -97,7 +97,7 @@ function Update({ parcours, open, onClose }) {
             <DialogContent className="max-w-3xl">
                 <form onSubmit={handleSendingNewPrograms}>
                     <DialogHeader>
-                        <DialogTitle>Updat E.T</DialogTitle>
+                        <DialogTitle>Mise à jour emploi du temps</DialogTitle>
                         <div className="flex  justify-end gap-20 ">
                             {schedules.length > 0 && (
                                 <div className="day-list">
@@ -122,7 +122,7 @@ function Update({ parcours, open, onClose }) {
                                         onChange={(dateDebut) => setSaveFormat({ ...saveFormat, date: dateDebut.target.value })} />
                                 </div>
                                 <div>
-                                    <Label htmlFor="jour" className="font-bold">jour</Label>
+                                    <Label htmlFor="jour" className="font-bold">Jour</Label>
                                     <Select name="week"
                                         required
                                         value={saveFormat.week.weekId}
@@ -153,7 +153,7 @@ function Update({ parcours, open, onClose }) {
 
                             <div className="grid gap-4 w-[150px]">
                                 <div>
-                                    <Label htmlFor="début" className="font-bold">Début de cours</Label>
+                                    <Label htmlFor="début" className="font-bold">Début du cours</Label>
                                     <Input type="time" name="debutCours"
                                         value={saveFormat.startTime}
                                         onChange={(debutCours) => setSaveFormat({ ...saveFormat, startTime: debutCours.target.value })}
@@ -161,7 +161,7 @@ function Update({ parcours, open, onClose }) {
                                     />
                                 </div>
                                 <div>
-                                    <Label htmlFor="fin" className="font-bold">Fin du Début</Label>
+                                    <Label htmlFor="fin" className="font-bold">Fin du cours</Label>
                                     <Input type="time" name="finCours"
                                         value={saveFormat.endTime}
                                         onChange={(finCours) => setSaveFormat({ ...saveFormat, endTime: finCours.target.value })}
@@ -172,9 +172,9 @@ function Update({ parcours, open, onClose }) {
                         </div>
                     </DialogHeader>
                     <DialogFooter className="mt-9">
-                        <Button type="button" className="transition ease-in-out delay-150 bg-blue-900 hover:bg-green-950 hover:-translate-y-1 hover:scale-110 duration-300 ..." onClick={handleUpdatingFieldsValue}>Save</Button>
-                        <Button type="submit" className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-950 duration-300 ...">Save All</Button>
-                        <Button type="button" className="transition ease-in-out delay-150 bg-red-700 hover:-translate-y-1 hover:scale-110 hover:bg-green-950 duration-300 ..." onClick={onClose}>Close</Button>
+                        <Button type="button" className="transition ease-in-out delay-150 bg-blue-900 hover:bg-blue-950 hover:-translate-y-1 hover:scale-110 duration-300 ..." onClick={handleUpdatingFieldsValue}>Enregistrer</Button>
+                        <Button type="submit" className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-blue-950 duration-300 ...">Tout enregistrer</Button>
+                        <Button type="button" className="transition ease-in-out delay-150 bg-red-700 hover:-translate-y-1 hover:scale-110 hover:bg-red-950 duration-300 ..." onClick={onClose}>Fermer</Button>
                     </DialogFooter>
                 </form>
             </DialogContent>

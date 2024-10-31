@@ -24,6 +24,7 @@ import {
     DialogFooter,
     DialogTitle,
 } from "@/components/ui/dialog"
+import { useNavigate } from "react-router-dom";
 
 
 const isAllFieldsNotEmpty = (data) => {
@@ -46,6 +47,8 @@ function Adding({ parcours, open, onClose }) {
             weekId: ''
         }
     })
+
+    const navigate = useNavigate();
 
     const handleSavingFieldsValue = () => {
         if (isAllFieldsNotEmpty(saveFormat)) {
@@ -81,6 +84,7 @@ function Adding({ parcours, open, onClose }) {
             //console.log('Données envoyées est avec succès!', response);
             setOpenSuccess(true);
             onClose();
+            navigate('/admin');
         }
     }
 
@@ -97,7 +101,7 @@ function Adding({ parcours, open, onClose }) {
                 <DialogContent className="max-w-3xl">
                     <form onSubmit={handleSendingNewPrograms}>
                         <DialogHeader>
-                            <DialogTitle>Adding New E.T</DialogTitle>
+                            <DialogTitle>Ajout nouveau emploi du temps</DialogTitle>
                             <div className="flex  justify-end gap-20 ">
                                 {schedules.length > 0 && (
                                     <div className="day-list">
@@ -122,7 +126,7 @@ function Adding({ parcours, open, onClose }) {
                                             onChange={(dateDebut) => setSaveFormat({ ...saveFormat, date: dateDebut.target.value })} />
                                     </div>
                                     <div>
-                                        <Label htmlFor="jour" className="font-bold">jour</Label>
+                                        <Label htmlFor="jour" className="font-bold">Jour</Label>
                                         <Select name="week"
                                             required
                                             value={saveFormat.week.weekId}
@@ -142,7 +146,7 @@ function Adding({ parcours, open, onClose }) {
                                         </Select>
                                     </div>
                                     <div>
-                                        <Label htmlFor="module" className="font-bold">module</Label>
+                                        <Label htmlFor="module" className="font-bold">Module</Label>
                                         <Input type="text" placeholder="Module" name="moduleName"
                                             value={saveFormat.moduleName}
                                             onChange={(moduleName) => setSaveFormat({ ...saveFormat, moduleName: moduleName.target.value })}
@@ -161,7 +165,7 @@ function Adding({ parcours, open, onClose }) {
                                         />
                                     </div>
                                     <div>
-                                        <Label htmlFor="fin" className="font-bold">Fin du Début</Label>
+                                        <Label htmlFor="fin" className="font-bold">Fin de cours</Label>
                                         <Input type="time" name="finCours"
                                             value={saveFormat.endTime}
                                             onChange={(finCours) => setSaveFormat({ ...saveFormat, endTime: finCours.target.value })}
@@ -172,9 +176,9 @@ function Adding({ parcours, open, onClose }) {
                             </div>
                         </DialogHeader>
                         <DialogFooter className="mt-9">
-                            <Button type="button" className="transition ease-in-out delay-150 bg-blue-900 hover:bg-green-950 hover:-translate-y-1 hover:scale-110 duration-300 ..." onClick={handleSavingFieldsValue}>Save</Button>
-                            <Button type="submit" className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-green-950 duration-300 ...">Save All</Button>
-                            <Button type="button" className="transition ease-in-out delay-150 bg-red-700 hover:-translate-y-1 hover:scale-110 hover:bg-green-950 duration-300 ..." onClick={onClose}>Close</Button>
+                            <Button type="button" className="transition ease-in-out delay-150 bg-blue-900 hover:bg-blue-950 hover:-translate-y-1 hover:scale-110 duration-300 ..." onClick={handleSavingFieldsValue}>Enregistrer</Button>
+                            <Button type="submit" className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-blue-950 duration-300 ...">Tout enregistrer</Button>
+                            <Button type="button" className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 duration-300 ..." onClick={onClose}>Fermer</Button>
                         </DialogFooter>
                     </form>
                 </DialogContent>

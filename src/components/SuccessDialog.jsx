@@ -15,9 +15,9 @@ function SuccessDialog({ open, onClose }) {
     <Dialog open={open}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-center">Succès</DialogTitle>
+          <DialogTitle className="text-center">Confirmation</DialogTitle>
           <DialogDescription>
-            Enter your username and Password  for accessing in New E.T
+            Ajout nouveau emploi du temps avec succès
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
